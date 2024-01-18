@@ -1,0 +1,25 @@
+# Sample serve.yaml configuration file
+
+server:
+  port: 8080  # Port on which the server listens
+
+routes:
+  - path: /           # URL path
+    method: GET       # HTTP method (GET, POST, PUT, DELETE, etc.)
+    handler: index    # Name of the handler function to execute
+  - path: /about
+    method: GET
+    handler: about
+  - path: /contact
+    method: GET
+    handler: contact
+
+handlers:
+  index:
+    file: index.html  # File to serve for this route
+  about:
+    file: about.html
+  contact:
+    file: contact.html
+
+# Additional configuration options can be added here
