@@ -1,0 +1,154 @@
+---
+type: map
+mapping:
+  apiVersion:
+    required: true
+    type: str
+  kind:
+    required: true
+    type: str
+  metadata:
+    required: true
+    type: map
+    mapping:
+      name:
+        required: true
+        type: str
+      annotations:
+        required: true
+        type: map
+        mapping:
+          scenarios.ai.sap.com/description:
+            type: str
+          scenarios.ai.sap.com/name:
+            type: str
+          executables.ai.sap.com/description:
+            type: str
+          executables.ai.sap.com/name:
+            type: str
+      labels:
+        required: true
+        type: map
+        mapping:
+          scenarios.ai.sap.com/id:
+            type: str
+          executables.ai.sap.com/id:
+            type: str
+          ai.sap.com/version:
+            type: str
+  spec:
+    required: true
+    type: map
+    mapping:
+      inputs:
+        required: true
+        type: map
+        mapping:
+          parameters:
+            required: true
+            type: seq
+            sequence:
+              - type: map
+                mapping:
+                  name:
+                    required: true
+                    type: str
+      artifacts:
+        required: true
+        type: seq
+        sequence:
+          - type: map
+            mapping:
+              name:
+                required: true
+                type: str
+      template:
+        required: true
+        type: map
+        mapping:
+          apiVersion:
+            required: true
+            type: str
+          metadata:
+            required: true
+            type: map
+            mapping:
+              annotations:
+                required: true
+                type: map
+                mapping:
+                  autoscaling.knative.dev/metric:
+                    required: true
+                    type: str
+                  autoscaling.knative.dev/target:
+                    required: true
+                    type: str
+                  autoscaling.knative.dev/targetBurstCapacity:
+                    required: true
+                    type: str
+              labels:
+                required: true
+                type: map
+                mapping:
+                  ai.sap.com/resourcePlan:
+                    required: true
+                    type: str
+          spec:
+            required: true
+            type: map
+            mapping:
+              predictor:
+                required: true
+                type: map
+                mapping:
+                  imagePullSecrets:
+                    required: true
+                    type: seq
+                    sequence:
+                      - type: map
+                        mapping:
+                          name:
+                            required: true
+                            type: str
+                  minReplicas:
+                    required: true
+                    type: int
+                  maxReplicas:
+                    required: true
+                    type: int
+                  containers:
+                    required: true
+                    type: seq
+                    sequence:
+                      - type: map
+                        mapping:
+                          name:
+                            required: true
+                            type: str
+                          image:
+                            required: true
+                            type: str
+                          ports:
+                            required: true
+                            type: seq
+                            sequence:
+                              - type: map
+                                mapping:
+                                  containerPort:
+                                    required: true
+                                    type: int
+                                  protocol:
+                                    required: true
+                                    type: str
+                          env:
+                            required: true
+                            type: seq
+                            sequence:
+                              - type: map
+                                mapping:
+                                  name:
+                                    required: true
+                                    type: str
+                                  value:
+                                    required: true
+                                    type: str
