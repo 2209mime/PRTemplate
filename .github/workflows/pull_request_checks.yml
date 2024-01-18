@@ -1,0 +1,35 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Install any dependencies or tools needed for your checks
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Install pykwalify
+        run: pip install pykwalify
+
+      # Syntax Check: Use yamllint to check the syntax of serve.yaml
+      - name: Syntax Check
+        run: yamllint serve.yaml
+
+      # Schema Validation: Use pykwalify to validate serve.yaml against schema.yaml
+      - name: Schema Validation
+        run: pykwalify -f schema.yaml -d serve.yaml
+
+      # Naming Convention Check: Replace with your actual naming convention check command
+      - name: Naming Convention Check
+        run: your-naming-convention-check-command
+
+      # Add more steps for additional checks or tasks as needed
